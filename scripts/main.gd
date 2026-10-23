@@ -5,6 +5,7 @@ func _ready() -> void:
     _setup_lighting()
     _setup_ground()
     _setup_player()
+    _setup_hud()
 
 func _setup_environment() -> void:
     var sky_material := ProceduralSkyMaterial.new()
@@ -61,3 +62,17 @@ func _setup_player() -> void:
     var player := player_scene.instantiate()
     player.position = Vector3(0.0, 1.0, 0.0)
     add_child(player)
+
+func _setup_hud() -> void:
+    var layer := CanvasLayer.new()
+    var label := Label.new()
+    label.text = "WASD move  |  Click to look  |  Space jump  |  Esc release cursor"
+    label.anchor_left = 0.5
+    label.anchor_top = 1.0
+    label.offset_left = -260.0
+    label.offset_top = -40.0
+    label.offset_right = 260.0
+    label.offset_bottom = -10.0
+    label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    layer.add_child(label)
+    add_child(layer)

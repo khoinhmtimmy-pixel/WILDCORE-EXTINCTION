@@ -15,7 +15,7 @@ A 2.5D third-person survival game built with Godot 4 and GDScript.
 
 - Godot Engine 4.7 or newer (standard build, GDScript)
 
-## Running the Game
+## Running the Game (Desktop)
 
 1. Install Godot 4.7+ from https://godotengine.org/download
 2. Open Godot and click **Import**.
@@ -26,9 +26,28 @@ A 2.5D third-person survival game built with Godot 4 and GDScript.
 ### Controls
 
 - **WASD** - Move
-- **Mouse** - Look around
+- **Mouse / Click** - Look around (click the canvas first on web)
 - **Space** - Jump
 - **Esc** - Release mouse cursor
+
+## Web Deployment
+
+This repository ships a ready-to-host web build in `build/web/`. To deploy:
+
+1. Upload the contents of `build/web/` to any static host (GitHub Pages, Netlify, Vercel, itch.io, etc.).
+2. Open the deployed URL in a browser.
+
+The web export is configured without threads, so no special COOP/COEP headers are required.
+
+To rebuild the web export yourself:
+
+1. Install Godot 4.7+ export templates.
+2. Run: `godot --headless --path . --export-release "Web" build/web/index.html`
+
+### Why a deployed folder may appear blank
+
+- The repository contains Godot *source* (`.tscn`, `.gd`), which browsers cannot run directly. You must export to HTML5 first (or use the included `build/web/`).
+- On web, mouse look requires a user click before pointer lock is allowed; click the game canvas to enable looking around.
 
 ## Status
 

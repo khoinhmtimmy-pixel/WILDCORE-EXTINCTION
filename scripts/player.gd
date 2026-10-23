@@ -9,10 +9,12 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var spring_arm: SpringArm3D = $SpringArm3D
 
 func _ready() -> void:
-    Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
     spring_arm.rotation.x = deg_to_rad(-20.0)
 
 func _unhandled_input(event: InputEvent) -> void:
+    if event is InputEventMouseButton and event.pressed and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+        Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+        return
     if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
         rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
         spring_arm.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
